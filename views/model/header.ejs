@@ -1,0 +1,34 @@
+<div id="header">
+		<div class="container top">
+			<div class="logo">
+				<img src="/web/imgs/logoA.png" alt="">
+			</div>
+			<ul class="nav">
+				<li><a href="">全部相册</a></li>
+				<li><a href="">我的相册</a></li>
+				<%if(username){%>
+					<li><a href="/management">管理相册</a></li>
+				<%}else {%>
+					<li><a href="/web/html/login.html">管理相册</a></li>
+				<%}%>
+			</ul>
+			<div class="login">
+				<%if(username){%>
+					<div class="head_pic">
+						<img src="<%=head_pic_path%>" alt="">	
+					</div>
+					<div class="username">
+						<a href="/userInfo"><%=username%></a>
+					</div>
+				<%}else {%>
+					<div class="head_pic">
+						<img src="/web/imgs/default.jpg" alt="" />
+					</div>
+					<div class="username">
+						<a href="/web/html/login.html">登录</a>
+					</div>
+				<%}%>
+				
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人信息</title>
+		<link rel="shortcut icon" href="/web/html/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="/web/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="/web/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/web/css/nav.css"/>
+		<link rel="stylesheet" type="text/css" href="/web/css/personInfo.css"/>
+		
+		
+		<link rel="stylesheet" href="/web/css/jquery.Jcrop.css" />
+		<script type="text/javascript" src="/web/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/web/js/jquery.Jcrop.js"></script>
+		
+	</head>
+	
+	<body>
+		<%- include('nav/nav.ejs')-%>
+		<div id="content">
+			<div class="container">
+				<a href="javascript:void(0)" id="back">返&nbsp;&nbsp;回</a>
+				<div id="panel">
+					<div class="change">
+						<div id="person_info" class="active">个人资料</div>
+						<div id="person_headpic" >修改头像</div>
+					</div>
+					<form id="info__form" >
+						<div class="item">
+							<label for="">年龄：</label>
+							<input type="text" name="age"  id="age" value="<%=age%>">
+							<input id="change_age_btn" type="button"  value="保存修改" >
+						</div>
+						<div class="item">
+							<label for="">工作：</label>
+							<input type="text" name="work"  id="work" value="<%=work%>">
+							<input id="change_work_btn" type="button"  value="保存修改" >
+						</div>
+						<div class="item">
+							<label for="">性别：</label>
+							<input type="radio" name="sex" class="sex" value="man" >男
+							<input type="radio" name="sex" class="sex" value="woman" >女
+							<input type="radio" name="sex" class="sex" value="secret" >保密
+							<label for="">  </label>
+							<input id="change_sex_btn" type="button"  value="保存修改" >
+						</div>
+						<div class="item">
+							<label for="">邮箱：</label>
+							<input type="email" name="email"  id="email" value="<%=email%>">
+							<input id="change_email_btn" type="button"  value="保存修改" >
+						</div>
+						<div class="item">
+							<label for="">新密码</label>
+							<input type="password" name="password" id="password">
+							<input id="change_pass_btn" type="button"  value="保存修改" >
+							<div id="pass_tips"></div>
+						</div>
+						
+					</form>
+					<form class="hide"  id="headpic_form" >
+				        <div class="row">
+				        		<div id="head_now">
+				        			<h3>当前头像</h3>
+				        			<img src="<%=head_pic_path%>" />
+				        		</div>
+				                <div class="jc-box">
+				                    <img src="/web/imgs/default.jpg" id="target" />
+				                    <div id="preview-pane" >
+				                        <div class="preview-container">
+				                            <img src="/web/imgs/default.jpg" class="jcrop-preview"/>
+				                        </div >
+				                    </div>
+				                <div >
+					                <form id="form">
+					                    <input id="upload_image" type="file" name="upimage" accept="image/*" class = "filePrew"/>
+					                </form>
+				                </div>
+				                <div >
+				                    <button type="button" id="cut">提交</button>
+				                </div>
+				        </div>
+				        </div>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+<script type="text/javascript" src="/web/js/strategy.js"></script>
+<script>
+//裁剪函数
+function jcrop_js() {
+				var global_api = "";
+				var boundx ="";//页面图片宽度
+				var boundy ="";//页面图片高度
+				var tag = false;
+				$(function() {
+				    //创建变量(在这个范围)的API和图像大小
+				    var jcrop_api,
+				        //获取一些信息预览窗格
+				        $preview = $('#preview-pane'),//大容器
+				        $pcnt = $('#preview-pane .preview-container'),//预览容器
+				        $pimg = $('#preview-pane .preview-container img'),//预览图片
+				
+				        xsize = $pcnt.width(),//预览容器的宽
+				        ysize = $pcnt.height();
+				       // console.log("fdsfa"+xsize,ysize);
+				    //target：大图的id
+				    $('#target').Jcrop({
+				      maxSize:[450,450],
+				    	//setSelect:[0,0,150,150], //初始化选中区域 
+				      animateTo:[20,20,200,200],
+				      onChange: updatePreview,//选框改变时的事件
+				      onSelect: updatePreview,//选框选定时的事件
+				      //选框宽高比。说明：width/height
+				      aspectRatio: 1 
+				    },function(){
+				      // Use the API to get the real image size
+				      //使用API来获得真实的图像大小
+				      var bounds = this.getBounds();
+				      boundx = bounds[0];
+				      boundy = bounds[1];
+				      // Store the API in the jcrop_api variable
+				      //jcrop_api变量中存储API
+				      jcrop_api = this;
+				      // Move the preview into the jcrop container for css positioning
+				      //预览进入jcrop容器css定位
+				      $preview.appendTo(jcrop_api.ui.holder);
+				    });
+				
+				    function updatePreview(c)
+				    {
+				    	//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+				      if (parseInt(c.w) > 0)
+				          global_api=c;
+				      {
+				      //console.log(c);
+				        var rx = xsize / c.w;
+				        var ry = ysize / c.h;
+				       // console.log(rx,ry);
+						//通过比例值控制图片的样式与显示
+				        $pimg.css({
+				          width: Math.round(rx * boundx) + 'px',//预览图片宽度为计算比例值与原图片宽度的乘积
+				          height: Math.round(ry * boundy) + 'px',//预览图片高度为计算比例值与原图片高度的乘积
+				          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+				          marginTop: '-' + Math.round(ry * c.y) + 'px'
+				        });
+				        	
+				      }
+				    };
+				    
+				    var imgURL ="";
+				    //图片回显
+				      $('#upload_image').change(function(event) {
+				        // 根据这个 <input> 获取文件的 HTML5 js 对象
+				        var files = event.target.files;
+				        var file;
+				        if (files && files.length > 0) {
+				        file = files[0];
+						var reader = new FileReader();
+						reader.readAsDataURL(file);
+						//console.log(file);
+						reader.onload = function(e) {
+							//console.log(e);
+					        $('.jcrop-holder img').attr('src', e.target.result);
+					        $('.preview-container img').attr('src', e.target.resultL);
+				        }
+						var formData = new FormData();
+						formData.set("tupian",file);
+						//发送ajax请求,把原图上传到数据库
+						$.ajax({
+							type:"post",
+							url:"/yulan",
+							dataType:"json",
+							data:formData,
+							contentType:false,
+							processData:false,
+							success:function(data) {
+									console.log(data);
+							}
+						});
+					}
+				        
+				      })
+				    //是否选择了本地图片
+				      $("#upload_image").change(function(){
+				              tag=true;
+				        });
+				    });
+				   
+				    //判断是否选择文件
+				    $("#cut").click(function() {
+				    	if(tag&&global_api != ""){
+				            ajax();
+				        }else{
+				            alert('你想干啥？选择图片去啊');
+				        }
+				    })
+				    
+				    //ajax文件上传
+				    function ajax() {
+				    	console.log(123);
+				            $.ajax({
+				                    url: "/caijian", 
+				                    dataType: 'json', 
+				                    type:"get",
+				                    data:{
+				                    	x:global_api.x,
+				                    	y:global_api.y,
+				                    	w:global_api.w,
+				                    	h:global_api.h
+				                    },
+				                    success: function (data){  
+				                        console.log(data);
+				                        if(!data.error){
+				                        	alert("裁剪成功");
+				                        	// 强制刷新页面、同F5功能一样
+											document.location.reload();
+				                        	$person_headpic.addClass("active");
+											$headpic_form.removeClass("hide");
+				                        }else {
+				                        	alert("裁剪失败");
+				                        }
+				                      
+				                    }
+				                }
+				            );
+		        }
+			}
+
+/*
+* js改版单选框性别的值
+* */
+	//改变性别单选框的值
+	let sex_flag = '<%=sex%>';
+	if(sex_flag ==='男'){
+		$(':input[value="man"]').attr('checked','checked')
+	}else if(sex_flag ==='女'){
+		$(':input[value="woman"]').attr('checked','checked')
+	}else{
+		$(':input[value="secret"]').attr('checked','checked')
+	}
+/**
+	*切换form
+**/
+	var $person_info= $("#person_info");
+	var $person_headpic = $("#person_headpic");
+	var $info__form = $("#info__form");
+	var $headpic_form = $("#headpic_form");
+	$person_info.click(function() {
+		$person_info.addClass("active").siblings().removeClass("active");
+		$info__form.removeClass("hide").siblings("form").addClass("hide");
+	})
+	$person_headpic.click(function() {
+		$person_info.removeClass("active").siblings().addClass("active");
+		$info__form.addClass("hide").siblings("form").removeClass("hide");
+		//初始化裁剪函数
+		jcrop_js();
+
+	})
+
+/**
+ *
+ * 修改信息
+ * */
+	var $password = $("#password");
+	var $email = $("#email");
+	var $age = $("#age");
+	var $work = $("#work");
+	var $change_sex_btn = $("#change_sex_btn");
+	var $change_pass_btn = $("#change_pass_btn");
+	var $change_email_btn = $("#change_email_btn");
+	var $change_age_btn = $("#change_age_btn");
+	var $change_work_btn = $("#change_work_btn");
+	//修改密码
+	$change_pass_btn.click(function() {
+		var password_val = $password.val();
+		var result = Strategy.use('notEmpty',password_val);
+		var result1 = Strategy.use('allEn',password_val);
+		if(result || result1){
+			//策略不通过
+			$('#pass_tips').html('请输入5-10位英文');
+			return ;
+		}
+		$.ajax({
+			type:"post",
+			url:"/update_preson_info",
+			dataType:"json",
+			data:{
+				type:"password",
+				val:password_val
+			},
+			success:function(data) {
+				if(!data.error){
+					$password.val("");
+					alert("请重新登录");
+					//清除session
+					location.href = "/web/html/login.html";
+
+				}
+			}
+		});
+	})
+	//修改性别
+	$change_sex_btn.click(function() {
+		var sex_val = $("input[name='sex']:checked").val();
+		$.ajax({
+			type:"post",
+			url:"/update_preson_info",
+			dataType:"json",
+			data:{
+				type:"sex",
+				val:sex_val
+			},
+			success:function(data) {
+				console.log(data);
+				if(!data.error){
+					$("input[name='sex']:checked").val("");
+				}
+
+			}
+		});
+	})
+	//修改邮箱
+	$change_email_btn.click(function() {
+		var email_val = $email.val();
+
+		$.ajax({
+			type:"post",
+			url:"/update_preson_info",
+			dataType:"json",
+			data:{
+				type:"email",
+				val:email_val
+			},
+			success:function(data) {
+				console.log(data);
+				if(!data.error){
+					$email.val(email_val);
+				}
+			}
+		});
+	})
+	//修改年龄
+	$change_age_btn.click(function() {
+				var age_val = $age.val();
+				$.ajax({
+					type:"post",
+					url:"/update_preson_info",
+					dataType:"json",
+					data:{
+						type:"age",
+						val:age_val
+					},
+					success:function(data) {
+						console.log(data);
+						if(!data.error){
+							$age.val(age_val);
+						}
+					}
+				});
+			})
+	//修改工作
+	$change_work_btn.click(function() {
+				var work_val = $work.val();
+				$.ajax({
+					type:"post",
+					url:"/update_preson_info",
+					dataType:"json",
+					data:{
+						type:"work",
+						val:work_val
+					},
+					success:function(data) {
+						console.log(data);
+						if(!data.error){
+							$work.val(work_val);
+						}
+					}
+				});
+			})
+
+	// 获取元素
+	var $back = $("#back");
+	// 添加点击事件
+	$back.click(function (){
+		// 设置history
+		window.history.back();
+		return false;
+	})
+
+
+
+</script>
+	</body>
+</html>

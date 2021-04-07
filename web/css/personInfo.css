@@ -1,0 +1,178 @@
+body {
+	background-color: #F3F3F3;
+}
+#content .container {
+	position: relative;
+}
+#content .container #back {
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	font-size: 18px;
+	padding-left: 15px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #B0B8BA;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	transition: all 0.2s linear 0.1s;
+	overflow: hidden;
+}
+#content .container #back::before {
+	content: "";
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: red;
+	border-top: 15px solid #F3F3F3;
+	border-left: 10px solid #F3F3F3;
+	border-bottom: 15px solid #F3F3F3;
+	border-right: 10px solid #B0B8BA;
+	transition: all 0.2s linear 0.1s;
+}
+#content .container #back:hover {
+	right: 5px;
+	background-color: #B92722;
+}
+#content .container #back:hover::before {
+	border-right: 10px solid #B92722;
+}
+#panel {
+	width: 500px;
+	height: 600px;
+	margin-top:20px;
+	display: flex;
+	flex-direction: column;
+}
+#panel .change {
+	height: 25px;
+	display: flex;
+	font-size: 16px;
+	line-height: 25px;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	box-sizing: border-box;
+}
+#panel .change div:first-child {
+	border-right: 1px solid #ccc;
+	box-sizing: border-box;
+}
+#panel .change div {
+	cursor: pointer;
+	flex: 1;
+}
+#panel .change div.active {
+	background-color: lightgray;
+}
+
+#panel form {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	box-sizing: border-box;
+}
+#panel #info__form .item {
+	display: flex;
+	
+	margin-top:20px;
+}
+#panel #headpic_form {
+	display: flex;	
+	width: 600px;
+	height: 500px;	
+}
+#panel #headpic_form .now {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+#panel #headpic_form .now img {
+	/*width:auto;height:auto;*/max-width:100%;max-height:100%;
+}
+#panel #headpic_form .change {
+	margin-top:40px;
+	display: flex;
+	flex-direction: column;
+}
+#panel #headpic_form .change lable {
+	position: relative;
+}
+#panel #headpic_form .change #upload_pic_file {
+	position: absolute;
+	width: 100px;
+	left:0;
+	top:0;
+	opacity: 0;
+}
+#panel #headpic_form .change #change_headpic_btn {
+	position: absolute;
+	left:0;
+	top:0;
+}
+#panel #headpic_form .change #text {
+	color:red;
+}
+#change_sex_btn {
+	margin-left:46px;
+}
+
+/**
+ *jcrop.css 
+ *
+ */
+.row {
+	position:relative;
+}
+.row .page-header {
+	position:absolute;
+	margin:0 auto;
+}
+.row .page-header #target {
+	position:absolute;
+	left:0;
+	top:50px;
+	
+	border: 1px solid red;
+}
+.row .page-header #target img {
+	width: 100%;
+}
+#preview-pane {
+	position:absolute;
+	top:200px;
+	right:-400px;
+	width: 200px;
+	height: 200px;
+	border: 1px solid blue;
+	overflow: hidden;
+}
+#preview-pane .preview-container {
+	width: 200px;
+	height: 200px;
+	/*width: 100%;
+	height: 100%;*/
+}
+#preview-pane .preview-container img {
+	width: 100%;
+	height: 100%;
+}
+
+.row #cut {
+	position:absolute;
+	right:-220px;
+	bottom:80px;
+}
+.row #head_now {
+	width: 150px;
+	height: 150px;
+	position:absolute;
+	right:-85px;
+	top:30px;
+}
+.row #head_now img {
+	width: 100%;
+	
+}

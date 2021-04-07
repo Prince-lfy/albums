@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享相册</title>
+	<link rel="shortcut icon" href="/web/html/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/web/css/reset.css">
+	<link rel="stylesheet" href="/web/css/common.css">
+	<link rel="stylesheet" href="/web/css/nav.css">
+	<link rel="stylesheet" href="/web/css/squareAlbum.css">
+</head>
+<body>
+<%- include('nav/nav.ejs'); -%>
+	<div id="content">
+		<div class="big_body cur">
+			<div id="mask">
+				<div class="clos"><span id="clos"></span></div>
+			</div>
+		</div>
+		<div class="head">
+			<div class="head_pic">
+				<div class="imgs">
+					<img src="<%= head_Pic %>" alt="">
+				</div>
+				<div class="user">
+					<p><%= username %></p>
+					<p>容量：<span></span></p>
+				</div>
+			</div>
+			<ul>
+				<li><a href="/main">首页</a></li>
+				<li><a href="/squareAlbum?username=<%=username%>&album=<%= targetUsername %>">相册</a></li>
+				<li><a href="/square">相册广场</a></li>
+			</ul>
+		</div>
+
+		<div class="container">
+			<div class="myalbums">
+				<div class="targetUsername">
+					<h3><span></span><span><%= targetUsername %></span>的相册</h3>
+					<a href="javascript:void(0)" id="back">返&nbsp;&nbsp;回</a>
+				</div>
+				<ul class="albums" id="albums">
+					<% for(var i=0; i< albumName.length; i++){ %>
+						<li>
+							<div class="imgs uploadImg" data-targetUsername="<%=targetUsername%>" style="background: url('/albums/<%=targetUsername%>/<%=albumName[i]%>/<%= imgName[i] %>') center center;background-size: cover;">
+							<!-- <img src="" alt=""> -->	
+							</div>
+							<div class="info">
+								<p class="getImg"><%= albumName[i] %></p>
+							</div>
+
+						</li>
+					<% } %>
+
+				</ul>
+			</div>
+		</div>
+		</div>
+	
+	<script type="text/javascript" src="/web/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		// 获取相册
+		var $albums = $("#albums");
+
+		$albums.on("click",".imgs", function(){
+			var albumName = $(this).siblings(".info").children(".getImg").html();
+			var username = $(this).attr("data-targetUsername");
+			// 发送ajax
+			$.ajax({
+				url: "/getImg",
+				data: {
+					username: username,
+					albumName: albumName
+				},
+				type: "get",
+				dataType: "json",
+				success: function(data){
+					// console.log(data);
+					if(!data.error){
+						$albums.html("");
+						$albums.append("<div class='txt'>图片信息</div>")
+						for(var i=0; i<data.data.length; i++){
+							$albums.append("<li class='lisimg'><div class='img'><img src="+data.dir + '/' + data.username + '/' + albumName + '/' + data.data[i].imgName+ " ></div><p><span>"+data.data[i].imgName+"</span></p></li>")
+						}
+					}
+				}
+			})
+		})
+
+		// 获取节点元素
+		var $mask = $("#mask");
+		var $clos = $("#clos");
+		// 添加点击事件，用于仔细查看图片
+		$albums.on("click", ".lisimg", function(){
+			// 去cur
+			$(".big_body").removeClass("cur");
+			var src = $(this).children(".img").children("img").attr("src");
+			// console.log(src);
+			// 创建img元素
+			var img = new Image();
+			img.src = src;
+			// 上树
+			$mask.append(img);
+			$clos.html("&times;")
+		})
+
+		// 添加事件，由于关闭展示图片窗口
+		$clos.click(function(){
+			// img下数
+			$("#mask img").remove();
+			// 同时关闭窗口
+			// 加cur
+			$(".big_body").addClass("cur");
+		})
+		
+		// 获取元素
+		var $back = $("#back");
+		// 添加点击事件
+		$back.click(function (){
+			console.log("back");
+			// 设置history
+			window.history.back();
+			return false;
+		})
+	</script>
+</body>
+</html>

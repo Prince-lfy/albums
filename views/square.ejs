@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>相册广场</title>
+	<link rel="shortcut icon" href="/web/html/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/web/css/reset.css">
+	<link rel="stylesheet" href="/web/css/common.css">
+	<link rel="stylesheet" href="/web/css/nav.css">
+	<link rel="stylesheet" href="/web/css/square.css">
+</head>
+<body>
+<%- include('nav/nav.ejs'); -%>
+	<div id="content">
+		<div class="container">
+			<div class="title">
+				<h3>相册<span>广场</span></h3>
+				<a href="javascript:void(0)" id="back">返&nbsp;&nbsp;回</a>
+			</div>
+			<ul id="list">
+			<% for(var i = 0; i < usersArr.length; i++) { %>
+				<li>
+					<div class="imgs">
+						<img src="<%= usersArr[i].head_pic_path %>" alt="">
+					</div>
+					<div class="user">
+						<a href="/squareAlbum?username=<%=username%>&album=<%= usersArr[i].username %>">
+							<p><%= usersArr[i].username %>的相册</p>
+							<p>更多精彩等你发现</p>
+						</a>
+					</div>
+				</li>
+			<% } %>
+			</ul>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container"></div>
+	</div>
+	<script type="text/javascript">
+		// 获取元素
+		var back = document.getElementById("back");
+
+		// 添加点击事件
+		back.onclick = function(){
+			// console.log("back");
+			// 设置history
+			window.history.back();
+			return false;
+		}
+	</script>
+</body>
+</html>

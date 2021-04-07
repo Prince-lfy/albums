@@ -1,0 +1,33 @@
+#header .top {
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+#header .top .logo {
+
+}
+#header .top .nav {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+#header .top .nav li {
+	padding: 0 20px;
+}
+#header .top .login {
+	display: flex;
+}
+#header .top .login .head_pic {
+	height: 100px;
+	display: flex;
+	align-items: center;
+}
+#header .top .login .username {
+	display: flex;
+	align-items: center;
+}
+#header .top .login img {
+	max-width: 80%;
+	max-height: 80%;
+}

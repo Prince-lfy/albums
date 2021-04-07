@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>上传图片</title>
+	<link rel="shortcut icon" href="/web/html/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/web/css/reset.css">
+	<link rel="stylesheet" href="/web/css/common.css">
+	<link rel="stylesheet" href="/web/css/nav.css">
+	<link rel="stylesheet" href="/web/css/upload_img.css">
+</head>
+<body>
+	<%- include("nav/nav.ejs")-%>
+	<div id="content">
+		<div class="head">
+			<div class="head_pic">
+				<div class="imgs">
+					<img src="<%= head_pic_path %>" alt="">
+				</div>
+				<div class="user">
+					<p><%= username %></p>
+					<p>容量：<span></span></p>
+				</div>
+			</div>
+			<ul>
+				<li><a href="/main">首页</a></li>
+				<li><a href="/management">相册</a></li>
+				<li><a href="/square">相册广场</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			<a href="javascript:void(0)" id="back">返&nbsp;&nbsp;回</a>
+			<!-- 上传图片 -->
+			<div id="upload_file">
+					<form id="form">
+						<select  name="album_name" id="upload_select">
+							<%for(var i =0;i<albumName.length;i++){%>
+								<option value="<%=albumName[i]%>"><%=albumName[i]%></option>
+							<%}%>
+						</select>
+						<input type="file" id="upload_pic" name="uploadImgs" multiple accept="image/*">
+						<input type="button" id="upload" value="上传">
+						<input type="button" id="secret" value="设为私密">
+						<input type="button" id="del_many" value="批量删除">
+						<input type="button" class="hide" id="del_btn" value="确认删除">
+						<input type="button" class="hide" id="cancles" value="取消">
+						
+					</form>
+					
+			</div>
+			<!-- 显示图片 -->
+			<div id="show_imgs">
+				<ul id="img_list">
+					
+				</ul>
+			</div>
+				
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container">		
+		</div>
+	</div>
+	<script type="text/javascript" src="/web/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/web/js/strategy.js"></script>
+	<script type="text/javascript" src="/web/js/upload_img.js"></script>
+</body>
+</html>

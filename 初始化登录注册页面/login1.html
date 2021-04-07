@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录注册</title>
+	<link rel="stylesheet" type="text/css" href="../web/css/reset.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../web/css/common.css" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../web/css/login.css" >
+</head>
+<body>
+		<div id="panel">
+			<div class="change">
+				<div id="show_login" >登录</div>
+				<div id="show_regist" class="active">注册</div>
+			</div>
+			<form  class="hide"  id="login_form" action="http://localhost:3000/login" method="post" >
+				<div class="item">
+					<span id="login_tips"></span>
+				</div>
+				<div class="item">
+					<label for="">用户名</label>
+					<input type="text" name="username" id="login_username">
+				</div>
+				<div class="item">
+					<label for="">密码</label>
+					<input type="password" name="password" id="login_password">
+				</div>
+				<div class="item">
+					<button  id="login">登录</button>
+				</div>
+			</form>
+			<form id="regist_form">
+				<div class="item">
+					<span id="regist_tips"></span>
+				</div>
+				<div class="item">
+					<label for="">用户名</label>
+					<input type="text" name="username" id="regist_username">
+				</div>
+				<div class="item">
+					<label for="">密码</label>
+					<input type="password" name="password" id="regist_password">
+				</div>
+				<div class="item">
+					<label for="">重复密码</label>
+					<input type="password" id="regist_repeat_password">
+				</div>
+				<div class="item">
+					<button type="button" id="regist">注册</button>
+				</div>
+			</form>
+		</div>
+		<script src="../web/js/jquery.min.js"></script>
+		<script src="../web/js/strategy.js"></script>
+		<script type="text/javascript" src="../web/js/login_regist.js"></script>
+		
+		
+</body>
+</html>

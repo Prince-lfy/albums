@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>相册管理</title>
+	<link rel="shortcut icon" href="/web/html/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/web/css/reset.css">
+	<link rel="stylesheet" href="/web/css/common.css">
+	<link rel="stylesheet" href="/web/css/nav.css">
+	<link rel="stylesheet" href="/web/css/management.css">
+</head>
+<body>
+<%- include('nav/nav.ejs') -%>
+<div id="content" class="">
+	<div class="big_body cur">
+		<div id="mask">
+			<div class="clos"><span id="clos"></span></div>
+		</div>
+	</div>
+	<div class="head container">
+		<div class="head_pic">
+			<div class="imgs">
+				<img src="<%= head_pic_path %>" alt="">
+			</div>
+			<div class="user">
+				<p><%= username %></p>
+				<p>容量：<span></span></p>
+			</div>
+		</div>
+		<ul>
+			<li><a href="/main">首页</a></li>
+			<li><a href="/management">相册</a></li>
+			<li><a href="/square">相册广场</a></li>
+		</ul>
+	</div>
+	<div class="container">
+		<div class="myalbums">
+			<div class="title">
+				<ul>
+					<li><a href="/upload_img_href" id="uploadImg">上传相片</a></li>
+					<li><a href="javascript:void(0)" id="create_albums">创建相册</a></li>
+				</ul>
+				<a href="javascript:void(0)" id="back">返&nbsp;&nbsp;回</a>
+			</div>
+			<div id="create" class="cur">
+				<div class="title">
+					<p>创建相册<span id="close">&times;</span></p>
+				</div>
+				<form id="createForm">
+					<p><input type="text" name="albumName" placeholder="相册名称" id="AlbumName"></p>
+					<p><textarea name="albumInfo" id="albumInfo" cols="30" rows="10" placeholder="相册描述"></textarea></p>
+					<p>权限设置：
+						<label><input type="radio" name="quan" id="public_" checked>公开</label>
+						<label><input type="radio" name="quan" id="question" >问题访问</label>
+						<label><input type="radio" name="quan" id="psd_question">密码访问</label>
+						<label><input type="radio" name="quan" id="persn">私人</label>
+					</p>
+					<div class="question_visit hide">
+						<div>
+							问题：<input type="text" id="question_question" placeholder="请设置问题">
+						</div>
+						<div>
+							答案：<input type="text" id="question_answer" placeholder="请设置答案">
+						</div>
+					</div>
+					<div class="psd_visit hide">
+						<div>
+							密码：<input type="text" id="pass_pass" placeholder="请设置密码">
+						</div>
+						<div>
+							确认：<input type="text" id="pass_more" placeholder="请确认密码">
+						</div>
+					</div>
+
+					<p>
+						<input type="button" id="create_btn" value="确定">
+						<input type="button" id="cancle_btn" value="取消">
+					</p>
+				</form>
+			</div>
+			<ul class="albums clearFix" id="albums">
+				<% for(var i=0; i< albumName.length; i++){ %>
+				<li>
+					<div class="imgs uploadImg" data-targetUsername="<%=username%>" style="background: url('/albums/<%=username%>/<%=albumName[i]%>/<%=imgName[i]%>') center center;background-size: cover;">
+						<!-- <img src="" alt=""> -->
+						<p class="deleteAlbum">
+							<span></span>
+						</p>
+					</div>
+					<div class="info">
+						<p class="getImg"><%= albumName[i] %></p>
+					</div>
+
+				</li>
+				<% } %>
+
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<div class="container">
+	</div>
+</div>
+<script type="text/javascript" src="/web/js/jquery.min.js"></script>
+<script type="text/javascript" src="/web/js/strategy.js"></script>
+<script type="text/javascript" src="./web/js/management.js"></script>
+</body>
+</html>

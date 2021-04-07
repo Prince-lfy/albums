@@ -1,0 +1,78 @@
+#content {
+	margin-top: 10px;
+}
+#content .container {
+	height: 350px;
+	position: relative;
+}
+#content .container #box {
+	width: 260px;
+	height: 350px;
+	background-color: rgba(0,0,0,.5);
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 30px 20px;
+	box-sizing: border-box;
+}
+#content .container #loginForm{
+	width: 190px;
+}
+#content .container #loginForm div {
+	border-top: 1px solid #fff;
+	padding-top: 10px;
+	opacity: 0.9;
+}
+#content .container #loginForm div p {
+	color: #fff;
+	font-size: 12px;
+	margin: 0;
+}
+#content .container #loginForm div p:first-child {
+	font-size: 16px;
+}
+#content .container #loginForm p {
+	margin: 10px 0;
+}
+#content .container #loginForm p input {
+	width: 190px;
+	height: 28px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+#content .container #loginForm p:first-child{
+	color: #fff;
+	font-size: 12px;
+	padding: 10px 0;
+}
+#loginBtn {
+	width: 100px;
+	height: 24px;
+	font-size: 13px;
+	margin-top: 5px;
+	text-align: center;
+}
+.huanying {
+	color: #fff;
+	font-size: 12px;
+}
+.btn-rigest span {
+	float: right;
+	opacity: 0.8;
+}
+.btn-rigest span a {
+	line-height: 40px;
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+}
+#content .container #loginForm p.check {
+	color: #fff;
+	font-size: 12px;
+	opacity: 0.8;
+}
+#content .container #loginForm p.check input {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}

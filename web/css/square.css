@@ -1,0 +1,113 @@
+body {
+	background-color: #f3f3f3;
+}
+#content {
+	margin-top: 50px;
+}
+#content .container .title {
+	height: 70px;
+	position: relative;
+}
+#content .container .title h3 {
+	color: #444;
+	font-size: 30px;
+	line-height: 50px;
+}
+#content .container .title a {
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	font-size: 18px;
+	padding-left: 15px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #B0B8BA;
+	position: absolute;
+	top: 15px;
+	right: 0px;
+	transition: all 0.2s linear 0.1s;
+	overflow: hidden;
+}
+#content .container .title a::before {
+	content: "";
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: red;
+	border-top: 15px solid #F3F3F3;
+	border-left: 10px solid #F3F3F3;
+	border-bottom: 15px solid #F3F3F3;
+	border-right: 10px solid #B0B8BA;
+	transition: all 0.2s linear 0.1s;
+}
+#content .container .title a:hover {
+	right: 5px;
+	background-color: #3EB1F0;
+}
+#content .container .title a:hover::before {
+	border-right: 10px solid #3EB1F0;
+}
+#content .container .title h3 {
+	line-height: 50px;
+	font-size: 30px;
+	color: #444;
+}
+#content .container .title h3 span {
+	color: #3EB1F0;
+}
+#content .container #list {
+	position: relative;
+	background-color: #F9F9F9;
+}
+#content .container #list li {
+	float: left;
+	width: 188px;
+	height: 188px;
+	margin-right: 10px;
+	margin-bottom: 10px; 
+	position: relative;
+	overflow: hidden;
+}
+#content .container #list li:nth-child(5n){
+	margin-right: 0;
+}
+#content .container #list li .imgs {
+	width: 100%;
+	height: 100%;
+}
+#content .container #list li .imgs img {
+	width: 100%;
+	height: 100%;
+}
+#content .container #list li .user {
+	width: 188px;
+	height: 188px;
+	position: absolute;
+	left: 0px;
+	top: 188px;
+	background-color: rgba(0,0,0,.4);
+	transition: all 0.3s linear 0s;
+}
+#content .container #list li:hover .user {
+	top: 0;
+	left: 0;
+}
+#content .container #list li .user a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-size: 15px;
+	text-align: center;
+	line-height: 30px;
+	text-decoration: none;
+	box-sizing: border-box;
+	padding: 64px 0;
+}
+#content .container #list li .user a p:last-child {
+	font-size: 13px;
+}
+#content .container #list li .user a p:first-child:hover {
+	color: #3EB1F0;
+}

@@ -1,0 +1,386 @@
+body {
+	background-color: #F3F3F3;
+}
+#content .head {
+	height: 80px;
+	background-color: #FAFAFA;
+	border-bottom: 2px solid #ddd;
+	box-sizing: border-box;
+	padding: 15px 0px;
+}
+#content .head .head_pic {
+	float: left;
+	width: 200px;
+	height: 50px;
+}
+#content .head .head_pic .imgs {
+	float: left;
+	width: 50px;
+	height: 50px;
+}
+#content .head .head_pic .imgs img {
+	width: 100%;
+	height: 50px;
+	display: block;
+}
+#content .head .head_pic .user {
+	float: right;
+	width: 130px;
+	height: 50px;
+}
+#content .head .head_pic .user p:first-child {
+	font-size: 16px;
+	line-height: 25px;
+	font-weight: bold;
+	color: #666666;
+	margin-bottom: 5px;
+}
+#content .head .head_pic .user p:last-child{
+	font-size: 14px;
+	color: #666666;
+}
+#content .head .head_pic .user p span {
+	display: inline-block;
+	width: 80px;
+	height: 10px;
+	background-color: #e6e6e6;
+}
+#content .head ul {
+	float: left;
+	width: 638px;
+	margin-left: 100px;
+}
+#content .head ul li {
+	float: left;
+	height: 50px;
+	padding-top: 5px;
+	line-height: 40px;
+}
+#content .head ul li a {
+	display: block;
+	padding: 0px 20px;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+#content .head ul li a:hover {
+	background-color: #1C9FE5;
+	color: #fff;
+}
+
+/*container*/
+#content .container {
+	position: relative;
+}
+
+#content .container .myalbums .title {
+	height: 75px;
+	padding: 25px 0;
+	box-sizing: border-box;
+}
+#content .container .myalbums .title ul li {
+	float: left;
+	margin-right: 10px; 
+}
+#content .container .myalbums .title ul li a {
+	display: block;
+	width: 75px;
+	height: 25px;
+	color: #444;
+	font-size: 12px;
+	border-radius: 3px;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+}
+#content .container .myalbums .title ul li:first-child a{
+	background-color: #1C9FE5;
+	color: #fff;
+}
+#content .container .myalbums .title ul li a#create_albums:hover {
+	color: #1C9FE5;
+}
+
+#content .container .title #back {
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	font-size: 18px;
+	padding-left: 15px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #B0B8BA;
+	position: absolute;
+	top: 15px;
+	right: 0px;
+	transition: all 0.2s linear 0.1s;
+	overflow: hidden;
+}
+#content .container .title #back::before {
+	content: "";
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: red;
+	border-top: 15px solid #F3F3F3;
+	border-left: 10px solid #F3F3F3;
+	border-bottom: 15px solid #F3F3F3;
+	border-right: 10px solid #B0B8BA;
+	transition: all 0.2s linear 0.1s;
+}
+#content .container .title #back:hover {
+	right: 5px;
+	background-color: #6F73FF;
+}
+#content .container .title #back:hover::before {
+	border-right: 10px solid #6F73FF;
+}
+
+#content .container .albums li {
+	float: left;
+	width: 188px;
+	height: 250px;
+	padding: 14px;
+	background: url(/web/imgs/bg_album_list.png) repeat-x left bottom;
+	background-color: #fff;
+	margin-right: 25px;
+	border-bottom: 1px solid #D8D8D8;
+	box-sizing: border-box;
+}
+#content .container .albums li:hover {
+	box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+#content .container .albums li .imgs {
+	width: 160px;
+	height: 160px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+#content .container .albums li .imgs p {
+	float: right;
+	width: 20px;
+	height: 20px;
+	padding: 2px 4px;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,.5);
+	display: none;
+}
+#content .container .albums li:hover .imgs p{
+	display: block;
+}
+#content .container .albums li .imgs p span {
+	display: block;
+	width: 10px;
+	height: 14px;
+	background: url("/web/imgs/icon-btn.png") no-repeat -35px -47px;
+}
+#content .container .albums li .info p {
+	font-size: 12px;
+}
+
+#content .container #create {
+	width: 480px;
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -240px;
+	background-color: #fff;
+	z-index: 5;
+}
+#content .container #create.cur {
+	display: none;
+}
+#content .container #create .title {
+	height: 38px;
+	padding: 12px 15px;
+}
+#content .container #create .title p {
+	width: 100%;
+	font-size: 14px;
+	color: #666;
+}
+#content .container #create .title p span {
+	float: right;
+	font-size: 24px;
+	cursor: pointer;
+}
+#content .container #create form {
+	padding: 30px 50px;
+	padding-bottom: 0;
+	box-sizing: border-box;
+}
+#content .container #create form p {
+	margin-bottom: 10px
+}
+#content .container #create form p:first-child input {
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+	font-size: 12px;
+	box-sizing: border-box;
+}
+#content .container #create form p textarea {
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+}
+#content .container #create form p:nth-child(3) {
+	font-size: 12px;
+	color: #666;
+}
+#content .container #create form p:last-child {
+	margin-top: 20px;
+	text-align: center;
+}
+#content .container #create form p:last-child input{
+	width: 100px;
+	height: 30px;
+	color: #fff;
+	background-color: #66B0D5;
+	border: none;
+	border-radius: 3px;
+}
+#content .container #create form p:last-child input:hover {
+	background-color: #46B0DD;
+}
+
+/*相册部分*/
+#content .container #albums .txt {
+	width: 100%;
+	height: 45px;
+	padding: 18px 15px;
+	background-color: #E4E4E4;
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 15px;
+	margin-bottom: 20px;
+}
+#content .container #albums li.lisimg {
+	float: left;
+	width: 110px;
+	height: 200px;
+	margin-right: 55px;
+	margin-bottom: 55px;
+	background-image: none;
+	position: relative;
+	transition: all 0.2s linear 0s;
+	cursor: pointer;
+}
+#content .container #albums li.lisimg:hover {
+	transform: scale(1.2);
+}
+#content .container #albums li.lisimg:nth-child(6n+1){
+	margin-right: 0px;
+}
+#content .container #albums li.lisimg .img {
+	width: 80px;
+}
+#content .container #albums li.lisimg .img img {
+	width: 100%;
+	display: block;
+}
+#content .container #albums li.lisimg p.imgName {
+	width: 80px;
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+#content .container #albums li.lisimg p.imgName span {
+	line-height: 15px;
+	font-size: 12px;
+}
+/*展示图片*/
+#content .big_body {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.4);
+	z-index: 8;
+}
+#content .big_body.cur {
+	display: none;
+}
+#content .big_body #mask {
+	width: 400px;
+	margin: 0 auto;
+	position: relative;
+}
+#content .big_body #mask img {
+	width: 100%;
+	display: block;
+}
+#content .big_body #mask #clos {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	font-size: 30px;
+	line-height: 40px;
+	text-align: center;
+	background-color: rgba(0,0,0,.5);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+
+/*img_list*/
+.container #show_imgs {
+	
+}
+.container #img_list {
+	display: flex;
+	justify-content:  space-between;
+	flex-wrap: wrap;
+}
+ 
+.container #img_list li  {
+	position:relative;
+	width: 300px;
+	margin-bottom:20px;
+	
+}
+.container #img_list li img  {
+	width: 100%;
+}
+
+/*upload_img*/
+.container #img_list li .delete {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right:-4px;
+	top:-3px;
+} 
+.container #img_list li .change_state {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left:-4px;
+	top:-3px;
+} 
+
+#span_close {
+	position:absolute;
+	right:-3px;
+	top:0px;
+	width: 15px;
+	height: 20px;
+	background: url("/web/imgs/icon-btn.png") no-repeat -34px -81px;
+}
+#span_close:hover {
+	cursor: pointer;
+}
+#upload_pic {
+	width: 132px;
+	/*opacity: 0;*/
+}
+

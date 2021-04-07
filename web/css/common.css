@@ -1,0 +1,17 @@
+
+.container {
+	width: 980px;
+	margin: 0 auto;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+.clearFix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.hide {
+	display: none !important;  
+}
